@@ -1,0 +1,12 @@
+.AppBar{
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toolTip{ 
+    display: flex;
+    flex-direction: row-reverse;
+}

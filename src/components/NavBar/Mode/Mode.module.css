@@ -1,0 +1,7 @@
+.root {
+    display: flex;
+    flex-direction: row;
+    margin:5px;
+    color: black;
+    flex-wrap: nowrap;
+}
