@@ -1,7 +1,14 @@
 .root {
     display: flex;
     flex-direction: row;
-    margin:5px;
+    margin:5px; 
+}
+.transparent{
+    background-color: transparent;
     color: black;
-    flex-wrap: nowrap;
+}
+
+.dark{
+    background-color: #121212;
+    color: white;
 }

@@ -11,8 +11,8 @@ const Mode: FC = () => {
 
     return (
         <RadioGroup name="use-radio-group" className={styles.root}>
-            <FormControlLabel value="Light" checked={!isDarkMode} label="Light" control={<Radio onChange={() => setIsDarkMode(false)} />} />
-            <FormControlLabel value="Dark" label="Dark" checked={isDarkMode} control={<Radio onChange={() => setIsDarkMode(true)} />} />
+            <FormControlLabel className={`${styles.radio} ${isDarkMode ? styles.dark : styles.transparent}`} value="Light" checked={!isDarkMode} label="Light" control={<Radio onChange={() => setIsDarkMode(false)} />} />
+            <FormControlLabel className={`${styles.radio} ${isDarkMode ? styles.dark : styles.transparent}`} value="Dark" label="Dark" checked={isDarkMode} control={<Radio onChange={() => setIsDarkMode(true)} />} />
         </RadioGroup>
     )
 }
