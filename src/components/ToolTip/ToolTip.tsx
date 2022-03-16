@@ -12,7 +12,7 @@ import Slider from '@mui/material/Slider';
 import Link from 'next/link'
 
 import Typography from '@mui/material/Typography';
-import styles from './ToolTip.module.css'
+import useStyles from './styles'
 
 
 const ToolTip: FC = () => {
@@ -24,16 +24,17 @@ const ToolTip: FC = () => {
         setNbShow(e.target.value)
     }
 
+    const classes = useStyles();
     return (
         <>
-            <span className={styles.fabButton}>
+            <span className={classes.fabButton}>
                 {isOpen && (
-                    <Paper className={`${styles.paper} ${isDarkMode ? styles.dark : styles.transparent}`}
+                    <Paper className={`${classes.paper} ${isDarkMode ? classes.dark : classes.transparent}`}
                         variant="outlined"
                         square>
                         <User user={user} nbFavorite={favo} />
                         <span>Stations to show : {nbShow}</span>
-                        <span className={styles.slider}>
+                        <span className={classes.slider}>
                             <Typography >0</Typography>
                             <Slider
                                 valueLabelDisplay="auto"
@@ -53,7 +54,7 @@ const ToolTip: FC = () => {
                 </Fab>
             </span>
             <Link href="/favorites" passHref>
-                <Fab className={styles.fabFavorite} color='secondary' variant="extended" aria-label="like" sx={{ m: 2 }}>
+                <Fab className={classes.fabFavorite} color='secondary' variant="extended" aria-label="like" sx={{ m: 2 }}>
                     <FavoriteIcon sx={{ mr: 1 }} />
                     {favo}
                 </Fab>
