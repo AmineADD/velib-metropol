@@ -24,7 +24,7 @@ const Favorite: FC = () => {
 
     const context = useMemo(
         () => ({ isConnected, user, isDarkMode, favorites, setFavorites, setIsDarkMode }),
-        [isConnected, user, isDarkMode, favorites, setFavorites, setIsDarkMode, setIsConnected, setUser]
+        [isConnected, user, isDarkMode, favorites, setFavorites, setIsDarkMode]
     );
     return (
         <AppCreateContextProvider value={context}>

@@ -52,7 +52,7 @@ const ToolTip: FC = () => {
                     Settings
                 </Fab>
             </span>
-            <Link href="/favorites">
+            <Link href="/favorites" passHref>
                 <Fab className={styles.fabFavorite} color='secondary' variant="extended" aria-label="like" sx={{ m: 2 }}>
                     <FavoriteIcon sx={{ mr: 1 }} />
                     {favo}
