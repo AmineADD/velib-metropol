@@ -20,7 +20,7 @@ export default makeStyles({
         borderRadius: "8px",
     },
     transparent: {
-        backgroundColor: "transparent",
+        backgroundColor: "white",
         color: "black",
     },
     dark: {
