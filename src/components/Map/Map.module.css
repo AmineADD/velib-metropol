@@ -2,3 +2,13 @@
     height:93vh;
     width: 100%; 
 }
+
+.popOver{
+    display: flex; 
+    align-items: center;
+    gap: 5px; 
+}
+
+.favorites{
+    cursor: pointer;
+}

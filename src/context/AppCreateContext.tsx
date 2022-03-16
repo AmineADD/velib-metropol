@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction, useContext } from 'react';
-import { Stations } from '../types/Stations';
+import { Station, Stations } from '../types/Stations';
 import { user } from '../types/User';
 
 type AppCreateContextType = {
@@ -8,6 +8,10 @@ type AppCreateContextType = {
     isDarkMode?: boolean;
     stations?: Stations;
     nbShow?: number;
+    favorites?: Station[];
+    zoom?: number;
+    setZoom?: Dispatch<SetStateAction<number>>;
+    setFavorites?: Dispatch<SetStateAction<Station[]>>;
     setNbShow?: Dispatch<SetStateAction<number>>;
     setIsDarkMode?: Dispatch<SetStateAction<boolean>>;
 };
