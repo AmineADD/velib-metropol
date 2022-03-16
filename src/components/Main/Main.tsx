@@ -6,7 +6,7 @@ import MapContainer from '../Map/MapContainer';
 import LoginOrRegister from '../Modal/Modal';
 import ToolTip from '../ToolTip/ToolTip';
 import Footer from './Footer/Footer';
-import styles from './Main.module.css'
+import useStyles from './styles'
 
 const Main: FC<{
   stations: Stations
@@ -14,13 +14,14 @@ const Main: FC<{
   stations
 }) => {
     const { user, isDarkMode } = useAppCreateContext();
+    const classes = useStyles();
     return (
-      <div className={styles.grid} >
+      <div className={classes.grid} >
         {user?.name ? <>
           <MapContainer data={stations} />
           <ToolTip />
         </> : <>
-          <div className={styles.notConnected}>
+          <div className={classes.notConnected}>
             <LoginOrRegister isConnected={false} />
             <Footer isDarkMode={isDarkMode} />
           </div>

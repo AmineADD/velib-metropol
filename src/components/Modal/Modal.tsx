@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import Styles from './Modal.module.css'
+import useStyles from './styles'
 import Form from './Form/Form';
 import { Status } from '../../types/Status';
 
@@ -13,6 +13,7 @@ const LoginOrRegister: FC<Status> = ({ isConnected }) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const classes = useStyles();
 
     return (
         <div>
@@ -31,7 +32,7 @@ const LoginOrRegister: FC<Status> = ({ isConnected }) => {
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                     p: 4,
-                }} className={Styles.box}>
+                }} className={classes.box}>
                     <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
                         {!isConnected && (<span>Login or Create your first account</span>)}
                     </Typography>
