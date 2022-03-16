@@ -1,20 +1,32 @@
-import { FC, useEffect, useState } from 'react'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { FC } from 'react'
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet'
 import { FullscreenControl } from "react-leaflet-fullscreen";
-
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
 import "leaflet-defaulticon-compatibility";
 import "react-leaflet-fullscreen/dist/styles.css";
 import { useAppCreateContext } from '../../context/AppCreateContext';
-
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp';
+import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
+import styles from './Map.module.css'
 
 const Map: FC = () => {
-    const { stations, nbShow } = useAppCreateContext();
+    const { stations, nbShow, favorites, setFavorites, zoom, setZoom } = useAppCreateContext();
+
+    const MapSurvivor = () => {
+        const map = useMapEvents({
+            zoom: (e) => {
+                setZoom(e.target._zoom);
+            },
+        })
+        return null
+    }
+
     return (
         <MapContainer
             center={[48.861293, 2.349607]}
-            zoom={12}
+            zoom={zoom}
             scrollWheelZoom
             style={{ height: "100%", width: "100%" }}
         >
@@ -22,10 +34,24 @@ const Map: FC = () => {
                 url={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.MAP_API}`}
             />
             <FullscreenControl />
+            <MapSurvivor />
             {
                 stations?.results?.slice(0, nbShow).map((velib, _) => (
-                    <Marker key={_} position={[velib.lat, velib.lon]}>
-                        <Popup>{velib.name}</Popup>
+                    <Marker key={_} position={[velib.lat, velib.lon]} >
+                        <Popup>
+                            <p className={styles.popOver}><b>{velib.name}</b>
+                                {favorites?.includes(velib) ? <FavoriteSharpIcon /> : <FavoriteBorderSharpIcon className={styles.favorites} onClick={() => { localStorage.setItem("favorites", JSON.stringify([...favorites, velib])); setFavorites([...favorites, velib]) }} />}
+                            </p>
+                            <span className={styles.popOver}>
+                                <span>
+                                    <p><b>Capacity</b>: {velib.capacity}</p>
+                                    <p><b>Code station</b>: {velib.stationCode}</p>
+                                    {velib.rental_methods && (<p className={styles.popOver}><CreditCardIcon />{velib?.rental_methods?.join(" ")}</p>)}
+                                </span>
+                            </span>
+
+
+                        </Popup>
                     </Marker>
                 ))
             }

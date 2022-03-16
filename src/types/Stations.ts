@@ -1,4 +1,4 @@
-type Station = {
+export type Station = {
     capacity?: number
     lat?: number
     lon?: number

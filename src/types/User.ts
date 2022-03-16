@@ -1,5 +1,5 @@
 export type user = {
     name: String;
-    password?: String;
+    email?: String;
     url?: string;
 }

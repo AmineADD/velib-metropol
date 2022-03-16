@@ -18,7 +18,7 @@ const NavBar: FC = () => {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" className={`${Styles.AppBar} ${isDarkMode ? Styles.dark : Styles.transparent}`}>
                 <Mode />
-                <Typography variant='h5' className={`${Styles.title} ${isDarkMode ? Styles.dark : Styles.transparent}`}>Vélib' API</Typography>
+                <Typography variant='h5' className={`${Styles.title} ${isDarkMode ? Styles.dark : Styles.transparent}`}>Vélib&apos; API</Typography>
                 <Toolbar className={Styles.toolTip}>
                     <Stack direction="row">
                         <Chip className={`${isDarkMode ? Styles.Chipdark : Styles.Chiptransparent}`} avatar={<Status status={isConnected} />} label={isConnected ? 'connected' : 'not connected'} />

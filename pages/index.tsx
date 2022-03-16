@@ -1,10 +1,8 @@
-import type { NextPage } from 'next'
 import { useEffect, useMemo, useState } from 'react'
-import Footer from '../src/components/Main/Footer/Footer'
 import Main from '../src/components/Main/Main'
 import NavBar from '../src/components/NavBar/NavBar'
 import { AppCreateContextProvider } from '../src/context/AppCreateContext'
-import { Stations } from '../src/types/Stations'
+import { Station, Stations } from '../src/types/Stations'
 
 const Home = ({ fetched }: {
   fetched: {
@@ -18,11 +16,12 @@ const Home = ({ fetched }: {
     results: fetched?.data.stations,
     lastFetch: new Date(fetched?.lastUpdatedOther * 1000)//timestamp to date
   }
-
-  const [isConnected, setIsConnected] = useState(false);
   const [user, setUser] = useState();
+  const [isConnected, setIsConnected] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [nbShow, setNbShow] = useState(10);
+  const [zoom, setZoom] = useState(12);
+  const [favorites, setFavorites] = useState<Station[]>([]);
 
   useEffect(() => {
     setIsConnected(localStorage.getItem("user") !== null)
@@ -32,9 +31,14 @@ const Home = ({ fetched }: {
     setUser(JSON.parse(localStorage.getItem("user") ?? "{}"));
   }, [isConnected])
 
+  useEffect(() => {
+    setFavorites(JSON.parse(localStorage.getItem("favorites")) ?? []);
+  }, [user])
+
+
   const context = useMemo(
-    () => ({ isConnected, user, isDarkMode, stations, nbShow, setNbShow, setIsDarkMode }),
-    [isConnected, user, isDarkMode, stations, setIsDarkMode, setIsConnected, setUser]
+    () => ({ isConnected, user, isDarkMode, favorites, setFavorites, zoom, setZoom, stations, nbShow, setNbShow, setIsDarkMode }),
+    [isConnected, user, isDarkMode, stations, favorites, setFavorites, zoom, nbShow, setZoom, setIsDarkMode, setIsConnected, setUser]
   );
 
 
