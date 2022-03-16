@@ -18,7 +18,7 @@ import styles from './ToolTip.module.css'
 const ToolTip: FC = () => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const { isDarkMode, user, isConnected, nbShow, setNbShow, stations: { results: { length } }, favorites: { length: favo } } = useAppCreateContext();
+    const { isDarkMode, user, isConnected, nbShow, setNbShow, favorites: { length: favo } } = useAppCreateContext();
 
     const handleChange = (e) => {
         setNbShow(e.target.value)
@@ -41,9 +41,9 @@ const ToolTip: FC = () => {
                                 value={nbShow}
                                 onChange={handleChange}
                                 step={25}
-                                max={length ?? 0}
+                                max={1425}
                             />
-                            <Typography >{length ?? 0}</Typography>
+                            <Typography >{1425}</Typography>
                         </span>
                         <LoginOrRegister isConnected={isConnected} />
                     </Paper>)}

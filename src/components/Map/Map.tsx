@@ -10,9 +10,12 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp';
 import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
 import styles from './Map.module.css'
+import { Stations } from '../../types/Stations';
 
-const Map: FC = () => {
-    const { stations, nbShow, favorites, setFavorites, zoom, setZoom } = useAppCreateContext();
+const Map: FC<{
+    stations: Stations
+}> = ({ stations }) => {
+    const { nbShow, favorites, setFavorites, zoom, setZoom } = useAppCreateContext();
 
     const MapSurvivor = () => {
         const map = useMapEvents({
