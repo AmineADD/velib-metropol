@@ -4,7 +4,7 @@ import { useAppCreateContext } from '../../context/AppCreateContext';
 import Footer from '../Main/Footer/Footer';
 import LoginOrRegister from '../Modal/Modal';
 import User from '../User/User';
-import styles from './Favorites.module.css'
+import useStyles from './styles';
 import Image from 'next/image'
 import CancelIcon from '@mui/icons-material/Cancel';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
@@ -13,14 +13,14 @@ import { Station } from '../../types/Stations';
 
 const Favorites: FC = () => {
     const { user, isDarkMode, isConnected, favorites, setFavorites } = useAppCreateContext();
-
+    const classes = useStyles();
     const handleRemove = (station: Station) => {
         const newFavorite = [...favorites.filter((f) => f != station)];
         localStorage.setItem("favorites", JSON.stringify(newFavorite))
         setFavorites(newFavorite);
     }
     return (
-        <div className={`${styles.grid}  ${isDarkMode ? styles.dark : styles.transparent}`}>
+        <div className={`${classes.grid}  ${isDarkMode ? classes.dark : classes.transparent}`}>
             {
                 isConnected ? <>
                     <User user={user} nbFavorite={favorites?.length ?? 0} />
@@ -30,15 +30,15 @@ const Favorites: FC = () => {
                             More ?
                         </Fab>
                     </Link>
-                    <div className={styles.list}>
+                    <div className={classes.list}>
                         {
                             favorites?.map((station, __key_) =>
-                            (<List key={__key_} className={styles.listBg} sx={{ width: '100%', maxWidth: 360 }}>
-                                <div className={styles.listItem}>
+                            (<List key={__key_} className={classes.listBg} sx={{ width: '100%', maxWidth: 360 }}>
+                                <div className={classes.listItem}>
                                     <Typography component="span">{station.name}</Typography>
-                                    <CancelIcon className={styles.button} onClick={() => handleRemove(station)} />
+                                    <CancelIcon className={classes.button} onClick={() => handleRemove(station)} />
                                 </div>
-                                <ListItem className={styles.columnList} >
+                                <ListItem className={classes.columnList} >
                                     <ListItemAvatar>
                                         <Avatar>
                                             <Image
@@ -49,10 +49,10 @@ const Favorites: FC = () => {
                                             />
                                         </Avatar>
                                     </ListItemAvatar>
-                                    <div className={styles.ListItemText} >
-                                        <ListItemText className={styles.item} primary={"Code"} secondary={station.stationCode} />
-                                        <ListItemText className={styles.item} primary={"ID"} secondary={station.station_id} />
-                                        <ListItemText className={styles.item} primary={"Capacity"} secondary={station.capacity} />
+                                    <div className={classes.ListItemText} >
+                                        <ListItemText className={classes.item} primary={"Code"} secondary={station.stationCode} />
+                                        <ListItemText className={classes.item} primary={"ID"} secondary={station.station_id} />
+                                        <ListItemText className={classes.item} primary={"Capacity"} secondary={station.capacity} />
                                     </div>
                                 </ListItem>
                             </List>)
@@ -60,7 +60,7 @@ const Favorites: FC = () => {
                         }
                     </div>
                 </> : <>
-                    <div className={styles.notConnected}>
+                    <div className={classes.notConnected}>
                         <LoginOrRegister isConnected={false} />
                         <Footer isDarkMode={isDarkMode} />
                     </div>

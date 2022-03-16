@@ -9,13 +9,14 @@ import { useAppCreateContext } from '../../context/AppCreateContext';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp';
 import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
-import styles from './Map.module.css'
+import useStyles from './styles'
 import { Stations } from '../../types/Stations';
 
 const Map: FC<{
     stations: Stations
 }> = ({ stations }) => {
     const { nbShow, favorites, setFavorites, zoom, setZoom } = useAppCreateContext();
+    const classes = useStyles();
 
     const MapSurvivor = () => {
         const map = useMapEvents({
@@ -42,14 +43,14 @@ const Map: FC<{
                 stations?.results?.slice(0, nbShow).map((velib, _) => (
                     <Marker key={_} position={[velib.lat, velib.lon]} >
                         <Popup>
-                            <p className={styles.popOver}><b>{velib.name}</b>
-                                {favorites?.includes(velib) ? <FavoriteSharpIcon /> : <FavoriteBorderSharpIcon className={styles.favorites} onClick={() => { localStorage.setItem("favorites", JSON.stringify([...favorites, velib])); setFavorites([...favorites, velib]) }} />}
+                            <p className={classes.popOver}><b>{velib.name}</b>
+                                {favorites?.includes(velib) ? <FavoriteSharpIcon /> : <FavoriteBorderSharpIcon className={classes.favorites} onClick={() => { localStorage.setItem("favorites", JSON.stringify([...favorites, velib])); setFavorites([...favorites, velib]) }} />}
                             </p>
-                            <span className={styles.popOver}>
+                            <span className={classes.popOver}>
                                 <span>
                                     <p><b>Capacity</b>: {velib.capacity}</p>
                                     <p><b>Code station</b>: {velib.stationCode}</p>
-                                    {velib.rental_methods && (<p className={styles.popOver}><CreditCardIcon />{velib?.rental_methods?.join(" ")}</p>)}
+                                    {velib.rental_methods && (<p className={classes.popOver}><CreditCardIcon />{velib?.rental_methods?.join(" ")}</p>)}
                                 </span>
                             </span>
 

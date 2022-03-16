@@ -3,7 +3,7 @@ import { FC, useState } from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button, Typography } from '@mui/material';
-import Styles from './Form.module.css'
+import useStyles from './styles'
 import { Status } from '../../../types/Status';
 import { user } from '../../../types/User';
 import { send } from 'emailjs-com';
@@ -42,7 +42,7 @@ const Form: FC<Status> = ({ isConnected }) => {
             process.env.USER_ID
         );
     };
-
+    const classes = useStyles();
     return (<Box
         component="form"
         sx={{
@@ -51,7 +51,7 @@ const Form: FC<Status> = ({ isConnected }) => {
         noValidate
         autoComplete="off"
     >
-        <div className={Styles.container}>
+        <div className={classes.container}>
             {
                 !isConnected && (<>
                     <TextField
