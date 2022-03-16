@@ -37,15 +37,15 @@ const Home = ({ fetched }: {
 
 
   const context = useMemo(
-    () => ({ isConnected, user, isDarkMode, favorites, setFavorites, zoom, setZoom, stations, nbShow, setNbShow, setIsDarkMode }),
-    [isConnected, user, isDarkMode, stations, favorites, setFavorites, zoom, nbShow, setZoom, setIsDarkMode]
+    () => ({ isConnected, user, isDarkMode, favorites, setFavorites, zoom, setZoom, nbShow, setNbShow, setIsDarkMode }),
+    [isConnected, user, isDarkMode, favorites, setFavorites, zoom, nbShow, setZoom, setIsDarkMode]
   );
 
 
   return (
     <AppCreateContextProvider value={context}>
       <NavBar />
-      <Main />
+      <Main stations={stations} />
     </AppCreateContextProvider>)
 }
 

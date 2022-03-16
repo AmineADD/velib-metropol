@@ -1,7 +1,10 @@
 import { FC } from "react";
 import dynamic from "next/dynamic";
 import styles from './Map.module.css'
-const MapContainer: FC = () => {
+import { Stations } from "../../types/Stations";
+const MapContainer: FC<{
+    data: Stations
+}> = ({ data }) => {
 
     const MapWithNoSSR = dynamic(() => import("./Map"), {
         ssr: false
@@ -9,7 +12,7 @@ const MapContainer: FC = () => {
 
     return (
         <div id="map" className={styles.map}>
-            <MapWithNoSSR />
+            <MapWithNoSSR stations={data} />
         </div>
     );
 }
