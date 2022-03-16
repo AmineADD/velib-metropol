@@ -24,8 +24,7 @@ const Form: FC<Status> = ({ isConnected }) => {
             //validation
             if (user.name !== '' && user.email !== '') {
                 localStorage.setItem('user', JSON.stringify(user));
-                notify();
-                return refresh();
+                return notify();
             } else {
                 return setIsError(true);
             }
@@ -40,7 +39,9 @@ const Form: FC<Status> = ({ isConnected }) => {
             process.env.TEMPLATE_ID,
             user,
             process.env.USER_ID
-        );
+        ).then(() => {
+            refresh();
+        });
     };
     const classes = useStyles();
     return (<Box
