@@ -38,7 +38,7 @@ const Home = ({ fetched }: {
 
   const context = useMemo(
     () => ({ isConnected, user, isDarkMode, favorites, setFavorites, zoom, setZoom, stations, nbShow, setNbShow, setIsDarkMode }),
-    [isConnected, user, isDarkMode, stations, favorites, setFavorites, zoom, nbShow, setZoom, setIsDarkMode, setIsConnected, setUser]
+    [isConnected, user, isDarkMode, stations, favorites, setFavorites, zoom, nbShow, setZoom, setIsDarkMode]
   );
 
 

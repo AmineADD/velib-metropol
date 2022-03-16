@@ -24,7 +24,7 @@ const Favorites: FC = () => {
             {
                 isConnected ? <>
                     <User user={user} nbFavorite={favorites?.length ?? 0} />
-                    <Link href="/">
+                    <Link href="/" passHref>
                         <Fab color='info' variant='extended' sx={{ m: 2 }}>
                             <AddLocationAltIcon sx={{ mr: 1 }} />
                             More ?
@@ -32,8 +32,8 @@ const Favorites: FC = () => {
                     </Link>
                     <div className={styles.list}>
                         {
-                            favorites?.map((station) =>
-                            (<List className={styles.listBg} sx={{ width: '100%', maxWidth: 360 }}>
+                            favorites?.map((station, __key_) =>
+                            (<List key={__key_} className={styles.listBg} sx={{ width: '100%', maxWidth: 360 }}>
                                 <div className={styles.listItem}>
                                     <Typography component="span">{station.name}</Typography>
                                     <CancelIcon className={styles.button} onClick={() => handleRemove(station)} />
